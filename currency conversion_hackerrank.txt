@@ -1,0 +1,1054 @@
+
+https://awadieudonne.com/blog/How-to-implement-Google-oauth-in-a-React-and-Nodeexpress?fbclid=IwAR11o8oz8HGZUXRKgeVehiDruZkGxPU_ccrpbiFt-ngrxBBGmVeFDJyfrSo
+
+Given a double-precision number, , denoting an amount of money, use the NumberFormat class' getCurrencyInstance method to convert  into the US, Indian, Chinese, and French currency formats. Then print the formatted values as follows:
+
+US: formattedPayment
+India: formattedPayment
+China: formattedPayment
+France: formattedPayment
+where  is  formatted according to the appropriate Locale's currency.
+
+Note: India does not have a built-in Locale, so you must construct one where the language is en (i.e., English).
+
+Input Format
+
+A single double-precision number denoting .
+
+Constraints
+
+Output Format
+
+On the first line, print US: u where  is  formatted for US currency.
+On the second line, print India: i where  is  formatted for Indian currency.
+On the third line, print China: c where  is  formatted for Chinese currency.
+On the fourth line, print France: f, where  is  formatted for French currency.
+
+Sample Input
+
+12324.134
+Sample Output
+
+US: $12,324.13
+India: Rs.12,324.13
+China: ￥12,324.13
+France: 12 324,13 €
+Explanation
+
+Each line contains the value of  formatted according to the four countries' respective currencies.
+
+
+
+
+
+
+import java.util.*;
+import java.text.*;
+import java.io.*;
+import java.math.*;
+import java.util.regex.*;
+public class Solution {
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        double payment = scanner.nextDouble();
+        scanner.close();
+        
+        // Write your code here.
+        
+              System.out.println("US: " + NumberFormat.getCurrencyInstance(new Locale("en","US")).format(payment));
+        System.out.println("India: " + NumberFormat.getCurrencyInstance(new Locale("en","IN")).format(payment));
+        System.out.println("China: " + NumberFormat.getCurrencyInstance(new Locale("zh","CN")).format(payment));
+        System.out.println("France: " + NumberFormat.getCurrencyInstance(new Locale("fr","FR")).format(payment));
+    }
+}
+
+
+
+
+
+
+
+
+=======================
+
+Write a class called myRegex which will contain a string pattern. You need to write a regular expression and assign it to the pattern such that it can be used to validate an IP address. Use the following definition of an IP address:
+IP address is a string in the form "A.B.C.D", where the value of A, B, C, and D may range from 0 to 255. Leading zeros are allowed. The length of A, B, C, or D can't be greater than 3.
+Some valid IP address:
+000.12.12.034
+121.234.12.12
+23.45.12.56
+Some invalid IP address:
+000.12.234.23.23
+666.666.23.23
+.213.123.23.32
+23.45.22.32.
+I.Am.not.an.ip
+*/
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.Scanner;
+
+class Regex {
+
+    public static void main(String []args)
+    {
+        Scanner in = new Scanner(System.in);
+        while(in.hasNext())
+        {
+            String IP = in.next();
+            System.out.println(IP.matches(new myRegex().pattern));
+        }
+
+    }
+
+class myRegex {
+	public String pattern="([1][\\d][\\d]|[0][0][0]|([0][0]|)[\\d]|([0]|)[\\d][\\d]|[2][0-4][\\d]|[2][5][0-5])."
+			+ "([1][\\d][\\d]|[0][0][0]|([0][0]|)[\\d]|([0]|)[\\d][\\d]|[2][0-4][\\d]|[2][5][0-5])."
+			+ "([1][\\d][\\d]|[0][0][0]|([0][0]|)[\\d]|([0]|)[\\d][\\d]|[2][0-4][\\d]|[2][5][0-5])."
+			+ "([1][\\d][\\d]|[0][0][0]|([0][0]|)[\\d]|([0]|)[\\d][\\d]|[2][0-4][\\d]|[2][5][0-5])";
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+=====================================
+
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+class Result {
+
+    /*
+     * Complete the 'getTotalX' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY a
+     *  2. INTEGER_ARRAY b
+     */
+
+    public static int getTotalX(List<Integer> a, List<Integer> b) {
+    boolean var,var2;int i;int j;int m=0;
+        for(i=a.get(a.size()-1);i<=b.get(0);i++){
+            var = false;
+            for(j=0;j<a.size();j++){
+                if(i % a.get(j)==0){
+                    var =true;
+                }else{
+                    var =false;
+                    break;
+                }
+            }
+            if(var==true){
+                var2=false;
+                for(int k=0;k<b.size();k++){
+                    if(b.get(k) % i==0){
+                        var2=true;
+                    }else{
+                        var2=false;
+                        break;
+                    }
+                   
+                }
+                 if(var2==true){
+                        m++;
+                    }
+            }
+        }
+       return m;
+
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        int n = Integer.parseInt(firstMultipleInput[0]);
+
+        int m = Integer.parseInt(firstMultipleInput[1]);
+
+        String[] arrTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> arr = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int arrItem = Integer.parseInt(arrTemp[i]);
+            arr.add(arrItem);
+        }
+
+        String[] brrTemp = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
+
+        List<Integer> brr = new ArrayList<>();
+
+        for (int i = 0; i < m; i++) {
+            int brrItem = Integer.parseInt(brrTemp[i]);
+            brr.add(brrItem);
+        }
+
+        int total = Result.getTotalX(arr, brr);
+
+        bufferedWriter.write(String.valueOf(total));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+
+
+
+=================================
+
+import java.io.*;
+import java.util.*;
+import java.util.stream.Collectors;
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String s = scan.nextLine();
+    String splits[] = s.split("[!,?._'@ ]");
+        splits = Arrays.asList(splits).stream().filter(str -> !str.isEmpty()).collect(Collectors.toList()).toArray(new String[0]);
+        System.out.println(splits.length);
+        for(String z : splits)
+            System.out.println(z);
+        scan.close();
+    }
+}
+
+===================
+
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        
+        Scanner in = new Scanner(System.in);
+
+        List<List<Integer>> lines = new ArrayList<List<Integer>>();
+        int n = in.nextInt();
+        for (int i = 0; i < n; i++) {
+            List<Integer> line = new ArrayList<Integer>();
+            int d = in.nextInt();
+            for (int j = 0; j < d; j++) {
+                line.add(in.nextInt());
+            }
+            lines.add(line);
+        }
+
+        int q = in.nextInt();
+        for (int i = 0; i < q; i++) {
+            int x = in.nextInt();
+            int y = in.nextInt();
+            if (y > lines.get(x - 1).size()) {
+                System.out.println("ERROR!");
+            } else {
+                System.out.println(lines.get(x - 1).get(y - 1));
+            }
+        }
+
+        in.close();
+    }
+}
+
+=====================
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.HashMap;
+
+/* BufferedReader is used instead of Scanner since it's faster and
+   won't time out on HackerRank test cases when using Java8 */
+class Solution {
+    public static void main(String[] args) throws IOException {
+        /* Save input as entries in a HashMap */
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        HashMap<String, Integer> map = new HashMap();
+        while (n-- > 0) {
+            String name = br.readLine();
+            int phone   = Integer.parseInt(br.readLine());
+            map.put(name, phone);
+        }
+        
+        /* Read each query and check if its in our HashMap */
+        String s;
+        while((s = br.readLine()) != null) {
+            if (map.containsKey(s)) {
+                System.out.println(s + "=" + map.get(s));
+            } else {
+                System.out.println("Not found");
+            }
+        }
+        
+        br.close();
+    }
+}
+
+===============================
+Java annotation can be used to define the metadata of a Java class or class element. We can use Java annotation at the compile time to instruct the compiler about the build process. Annotation is also used at runtime to get insight into the properties of class elements.
+
+Java annotation can be added to an element in the following way:
+
+
+
+import java.lang.annotation.*;
+import java.lang.reflect.*;
+import java.util.*;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface FamilyBudget {
+	String userRole() default "GUEST";
+    
+    int budgetLimit();
+}
+
+class FamilyMember {
+    @FamilyBudget(userRole = "SENIOR", budgetLimit = 100)
+	public void seniorMember(int budget, int moneySpend) {
+		System.out.println("Senior Member");
+		System.out.println("Spend: " + moneySpend);
+		System.out.println("Budget Left: " + (budget - moneySpend));
+	}
+
+    @FamilyBudget(userRole = "JUNIOR", budgetLimit = 50)
+	public void juniorUser(int budget, int moneySpend) {
+		System.out.println("Junior Member");
+		System.out.println("Spend: " + moneySpend);
+		System.out.println("Budget Left: " + (budget - moneySpend));
+	}
+}
+
+public class Solution {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int testCases = Integer.parseInt(in.nextLine());
+		while (testCases > 0) {
+			String role = in.next();
+			int spend = in.nextInt();
+			try {
+				Class annotatedClass = FamilyMember.class;
+				Method[] methods = annotatedClass.getMethods();
+				for (Method method : methods) {
+					if (method.isAnnotationPresent(FamilyBudget.class)) {
+						FamilyBudget family = method
+								.getAnnotation(FamilyBudget.class);
+						String userRole = family.userRole();
+                        int budgetLimit = family.budgetLimit();
+						if (userRole.equals(role)) {
+                        if (userRole.equals(role)) {
+								method.invoke(FamilyMember.class.newInstance(),
+										budgetLimit, spend);
+							}else{
+								System.out.println("Budget Limit Over");
+							}
+						}
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			testCases--;
+		}
+	}
+}
+
+
+===============================
+import java.io.*;
+import java.util.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+      Scanner scan = new Scanner(System.in);
+        String str = scan.next();
+        scan.close();
+        
+        /* Encode the String using MD5 */
+       try{
+            MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(str.getBytes());
+        byte[] digest = md.digest();
+          /* Print the encoded value in hexadecimal */
+        for (byte b : digest) {
+            System.out.format("%02x", b);
+        }
+        
+       }catch (Exception e){
+           System.out.println("");
+       }
+       
+        
+         
+    }
+}
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Solution {
+
+     public static void main(String[] args) throws NoSuchAlgorithmException {
+        /* Read and save the input String */
+        Scanner scan = new Scanner(System.in);
+        String str = scan.next();
+        scan.close();
+        
+        /* Encode the String using SHA-256 */
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(str.getBytes());
+        byte[] digest = md.digest();
+        
+        /* Print the encoded value in hexadecimal */
+        for (byte b : digest) {
+            System.out.format("%02x", b);
+        }
+    
+    }
+}
+
+
+
+===========Java 2D Array ==================
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+public class Solution {
+
+
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        int[][] a = new int[6][6];
+        int max = -63;
+        int sum = 0;
+        for (int i = 0; i < 6; i++) {
+            String[] arrRowItems = scanner.nextLine().split(" ");
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+            for (int j = 0; j < 6; j++) {
+                int arrItem = Integer.parseInt(arrRowItems[j]);
+                a[i][j] = arrItem;
+            }
+        }
+        
+        for (int i=0;i<4;i++)  
+        {  
+            for(int j =0 ;j<4;j++)  
+            {  
+                sum = a[i][j] + a[i][j+1] + a[i][j+2] + a[i+1][j+1] +a[i+2][j] + a[i+2][j+1] + a[i+2][j+2];  
+                if (max < sum) 
+                    max = sum;
+            }  
+        }
+        
+        System.out.println(max); 
+        
+
+        scanner.close();
+    }
+}
+
+===========================
+Java Priority Queue
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+/*
+ * Create the Student and Priorities classes here.
+ */
+
+import java.util.Comparator;
+import java.util.PriorityQueue;
+
+class Student {
+    private final int id;
+    private final String name;
+    private final double cgpa;
+
+    public Student(int id, String name, double cgpa) {
+        this.id = id;
+        this.name = name;
+        this.cgpa = cgpa;
+    }
+
+    public int getID() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getCGPA() {
+        return cgpa;
+    }
+}
+
+class Priorities {
+    
+    private final PriorityQueue<Student> queue = new PriorityQueue<>(
+            Comparator.comparing(Student::getCGPA).reversed()
+                    .thenComparing(Student::getName)
+                    .thenComparing(Student::getID));
+
+    public List<Student> getStudents(List<String> events) {
+        events.forEach((event) -> {
+            if (event.equals("SERVED")) {
+                queue.poll();
+            } else {
+                String[] details = event.split(" ");
+
+                queue.add(new Student(Integer.parseInt(details[3]), details[1], Double.parseDouble(details[2])));
+            }
+        });
+
+        List<Student> students = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            students.add(queue.poll());
+        }
+
+        return students;
+    }
+}
+
+public class Solution {
+    private final static Scanner scan = new Scanner(System.in);
+    private final static Priorities priorities = new Priorities();
+    
+    public static void main(String[] args) {
+        int totalEvents = Integer.parseInt(scan.nextLine());    
+        List<String> events = new ArrayList<>();
+        
+        while (totalEvents-- != 0) {
+            String event = scan.nextLine();
+            events.add(event);
+        }
+        
+        List<Student> students = priorities.getStudents(events);
+        
+        if (students.isEmpty()) {
+            System.out.println("EMPTY");
+        } else {
+            for (Student st: students) {
+                System.out.println(st.getName());
+            }
+        }
+    }
+}
+
+
+=-========================
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+
+class Result {
+
+    /*
+     * Complete the 'firstOccurrence' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. STRING s
+     *  2. STRING x
+     */
+
+    public static int firstOccurrence(String s, String x) {
+    // Write your code here
+     int size = s.length()-1;
+     int size1 =  x.length()-1 ;
+     int index =0;
+    for (int i =0 ; i< size; i++)
+       {
+       for(int j= 0 ; j< size1 ; j++)
+        {
+            int k = i;
+        if (s.charAt(k) == (x.charAt(j)) ||  s.charAt(k) == '*' ){
+            System.out.println("--k--"+k);
+            System.out.println("--j--"+j);
+            k=k+1;
+            index = i;
+        }
+        }
+
+    }
+    return index;
+
+}
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = bufferedReader.readLine();
+
+        String x = bufferedReader.readLine();
+
+        int result = Result.firstOccurrence(s, x);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
+
+
+
+
+-------------------------------
+
+#3---
+Employee
+-id
+-name
+-age
+-salary
+
+i/p: list<Employee>
+
+o/p: map<age, list of employees>
+
+
+
+public Map<Integer,List<Employee>> filterEmployeeByAge(List<Employee> empList) {
+
+  Map<Integer,List<Employee> resultMap = new HashMap<Integer,List<Employee>>();
+  
+  
+  
+  for (Employee emp :empList){
+  //code logic
+  
+	resultMap.put(emp.getAge().toString , emp); // age may same for morethan one. ? 
+  
+  }
+  return resultMap;
+}
+
+
+-------------------------
+
+
+3lt and 5lt   
+
+
+3lt+3lt --> 5lt --  1ltrs remains
+				--	3lt
+--------------------
+
+		   list.stream().filter(empl->{
+
+System.out.println(empl);
+
+return empl.getAget()>30)};
+
+
+
+int[] numbers = {2,4,6,1,4,6,0,8}   as per set ?
+
+2,4,6,1,0,8
+
+Print the unique numbers from above interger array without using collection api?
+
+
+sort ?
+
+int [] result= new int[numbers.length];
+
+for( int i =0; numbers.length ; i++)
+{
+for( int j = i+1 =0; numbers.length ; j++)
+{
+
+ if(numbers[i] == numbers[j] && isConatains(numbers[i])
+ {
+ result.add(numbers[i]);
+ 
+ }
+}}
+
+private boolean isConatains(int num){
+
+ for(int k =0 ; k <result.length< k++){
+ 
+ if(result[k] == num){
+ 
+ return false;
+ 
+ } else 
+ return true;
+ 
+ }
+system.out.println(result);
+}
+
+
+
+
+return string.chars().distinct().count();
+
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+
+/*
+ * Create the Filter and Mapper classes here.
+ */
+ class Mapper {
+     
+     
+     int static getDistinctCharactersCount(){
+         
+         
+         return str.chars().distinct().count();
+         
+     }
+     
+ }
+ 
+ 
+class CharactersCount {
+    private final String name;
+    private final Integer distinctCharacterCount;
+    
+    public CharactersCount(String name, Integer distinctCharacterCount) {
+        this.name = name;
+        this.distinctCharacterCount = distinctCharacterCount;
+    }
+    
+    @Override
+    public String toString() {
+        return "\"" + this.name + "\" has " + this.distinctCharacterCount + " distinct characters.";
+    }
+}
+
+public class Solution {
+    private static final Scanner scanner = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        List<String> names = Arrays.asList(
+                "aaryanna",
+                "aayanna",
+                "airianna",
+                "alassandra",
+                "allanna",
+                "allannah",
+                "allessandra",
+                "allianna",
+                "allyanna",
+                "anastaisa",
+                "anastashia",
+                "anastasia",
+                "annabella",
+                "annabelle",
+                "annebelle"
+        );
+        
+        names.stream()
+                .filter(Filter.nameStartingWithPrefix(scanner.nextLine()))
+                .map(Mapper.getDistinctCharactersCount())
+                .forEachOrdered(System.out::println);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+-----------------------------
+
+import java.util.List;
+import java.util.Scanner;
+import org.junit.Assert;
+
+class StringsCollectionRunnable implements Runnable {
+ /*
+ * Implement the runnable for adding threadName with index
+ */
+    private final int stringsCount;
+    private final String threadName;
+    private final StringsCollection stringsCollection;
+    
+    public StringsCollectionRunnable(StringsCollection stringsCollection, int stringsCount, String threadName) {
+        this.stringsCollection = stringsCollection;
+        this.stringsCount = stringsCount;
+        this.threadName = threadName;
+    }
+    
+    //Implement HERE.
+    
+}
+
+/** Implement test cases here */
+class SolutionTest{
+    
+    public void testSuite(){
+        test1();
+        test2();
+    }
+    
+    /** Implement test1() -> Number of threads=3  and expected output should be like {"Hacker1", "Rank1","Hacker2", "Rank2","Hacker3", "Rank3"} */
+    public void test1(){
+         
+    }
+    
+    /** Implement test2() -> Number of threads=2  and expected output should be like {"Hacker1", "Rank1","Hacker2", "Rank2"} */   
+    public void test2(){
+            
+    }
+}
+
+class StringsCollection {
+        java.util.List<String> list = java.util.Collections.synchronizedList(new java.util.ArrayList<>());
+    public void addString(String string){
+        list.add(string);
+    }
+
+    public java.util.List<String> getStringsCollection(){
+        return list;
+    }
+    
+    public void clear(){
+        list.clear();
+        list = java.util.Collections.synchronizedList(new java.util.ArrayList<>());
+    }
+    
+}
+
+
+public class Solution {
+    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final StringsCollection STRINGS_COLLECTION = new StringsCollection();
+    
+    public static void main(String[] args) {
+        int threadsCount = Integer.parseInt(SCANNER.nextLine());
+        
+
+        List<String> stringsCollection = getStrings(threadsCount);
+        
+        int nonNullStrings = 0;
+        for (String string: stringsCollection) {
+            if (string != null) {
+                nonNullStrings++;
+            }
+        }
+        System.out.println(nonNullStrings);
+        STRINGS_COLLECTION.clear();
+        new SolutionTest().testSuite();
+    }
+    
+    private static List<String> getStrings(int threadsCount){
+        Thread[] threads = new Thread[threadsCount];
+        
+        for (int i = 0; i < threadsCount; i++) {
+            int stringsCount = Integer.parseInt(SCANNER.nextLine());
+            threads[i] = new Thread(new StringsCollectionRunnable(STRINGS_COLLECTION, stringsCount, String.valueOf(i + 1)));
+            threads[i].start();
+        }
+        
+        for (int i = 0; i < threadsCount; i++) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException ex) {
+                System.err.println(ex);
+            }
+        }
+        
+        List<String> stringsCollection = STRINGS_COLLECTION.getStringsCollection();
+        System.out.println(stringsCollection.size());
+        
+        return stringsCollection;
+    }
+    
+    public static List<String> getStrings(int threadsCount,List<String> strings){
+        Thread[] threads = new Thread[threadsCount];
+        int stringsCount = strings.size();
+        if (stringsCount < threadsCount){
+            int diff = threadsCount - stringsCount;
+            for(int i=0; i<diff ; i++ ){
+                strings.add("Thread"+i);
+            }
+        }
+        for (int i = 0; i < threadsCount; i++) {
+            
+            threads[i] = new Thread(new StringsCollectionRunnable(STRINGS_COLLECTION, stringsCount, strings.get(i)));
+            threads[i].start();
+        }
+        
+        for (int i = 0; i < threadsCount; i++) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException ex) {
+                System.err.println(ex);
+            }
+        }
+        
+        List<String> stringsCollection = STRINGS_COLLECTION.getStringsCollection();
+        
+        return stringsCollection;
+    }
+}
+
+
+------------------------
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+import com.google.gson.Gson;
+import java.net.*;
+
+class Result {
+
+    /*
+     * Complete the 'getArticleTitles' function below.
+     *
+     * The function is expected to return List<Map<String,String>>.
+     * The function accepts STRING author as parameter.
+     * 
+     * URL for cut and paste: 
+     * https://jsonmock.hackerrank.com/api/articles?author=<authorName>
+     * 
+     * Use Gson to convert response to the expected the List.
+     *
+     */
+    
+    public static List<Map<String,String>> getArticleTitles(String author) {
+
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String author = bufferedReader.readLine();
+
+        List<String> result = getTitles(author);
+
+        bufferedWriter.write(
+            result.stream()
+                .collect(joining("\n"))
+            + "\n"
+        );
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+    
+    private static List<String> getTitles(String author){
+        List<Map<String,String>> dataList =   Result.getArticleTitles(author);
+        List<String> titles = new ArrayList<String>();            
+        for( Map<String,String> dataMap : dataList) {
+
+            String title =  dataMap.get("title");
+            String storyTitle = dataMap.get("story_title");
+
+            if(title == null && storyTitle == null){
+                continue;
+            }
+            else if(title != null && storyTitle == null){
+                titles.add(title);
+            }
+            else{
+                titles.add(storyTitle);
+            }
+        }
+        return titles;
+    }
+}
+
+
+====================================
+
+/** * reverse the given array in place * @param input */ 
+public static void reverse(int[] input) { 
+    System.out.println("original array : " + Arrays.toString(input)); 
+    // handling null, empty and one element array 
+    if(input == null || input.length <= 1){ 
+        return; 
+        } 
+    for (int i = 0; i < input.length / 2; i++) 
+    { int temp = input[i]; // swap numbers 
+    input[i] = input[input.length - 1 - i]; 
+    input[input.length - 1 - i] = temp; 
+    }
+    System.out.println("reversed array : " + Arrays.toString(input)); }
+   
+}
+---------------------------------
+
+
